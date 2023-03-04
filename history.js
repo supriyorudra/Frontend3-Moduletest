@@ -3,7 +3,7 @@ localStorage.getItem('searchHistory') ? searchHistory = JSON.parse(localStorage.
 const searchList = document.querySelector('.search-lists');
 const clearSearch = document.querySelector('.clear-search');
 
-let count = 0;
+let count = 1;
 searchHistory.forEach(search => {
     searchList.innerHTML += `
     <div class="search-items">
