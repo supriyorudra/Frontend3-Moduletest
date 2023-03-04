@@ -40,17 +40,17 @@ inputBtn.addEventListener('click', (e) => {
 
             const dataItems = data.items;
             dataItems.map(arrItems => {
+                
                 const bookInfo = arrItems.volumeInfo;
-                console.log(arrItems)
                 const books = {
                     id: arrItems.id,
                     image: bookInfo.imageLinks.thumbnail,
                     title: bookInfo.title,
-                    author: bookInfo.authors[0],
+                    author: bookInfo.authors == undefined ? bookInfo.authors = ["NA"] : bookInfo.authors = bookInfo.authors[0],
                     pageCount: bookInfo.pageCount,
                     publisher: bookInfo.publisher
                 }
-
+                console.log(arrItems.volumeInfo.authors)
                 if (bookStore.length < dataItems.length) {
                     bookStore.push(books);
                 }
@@ -65,7 +65,6 @@ inputBtn.addEventListener('click', (e) => {
 
                 item.name == undefined ? item.name = 'NA' : item.name;
                 item.title == undefined ? item.title = 'NA' : item.title;
-                item.author == undefined ? item.author = 'NA' : item.author;
                 item.pageCount == undefined ? item.pageCount = 'NA' : item.pageCount;
                 item.publisher == undefined ? item.publisher = 'NA' : item.publisher;
 

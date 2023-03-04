@@ -23,13 +23,13 @@ searchItems.forEach(elem => {
     const search = elem.querySelector('.search-name').innerText;
     elem.addEventListener('click', () => {
 
-        let myArr = search.split(' ');
-        let newSearch = myArr.join('+');
+        // let myArr = search.split(' ');
+        // let newSearch = myArr.join('+');
 
         if (search.value != "") {
             cardContainer.classList.remove('hide');
             async function fetchingData() {
-                const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${newSearch}`);
+                const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${search}`);
                 const data = await response.json();
                 let bookStore = [];
 
