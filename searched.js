@@ -2,7 +2,7 @@ let searchHistory = [];
 localStorage.getItem('searchHistory') ? searchHistory = JSON.parse(localStorage.getItem('searchHistory')) : searchHistory = [];
 const searchList = document.querySelector('.search-lists');
 
-let count = 0;
+let count = 1;
 searchHistory.map(search => {
     searchList.innerHTML += `
     <div class="search-items">
@@ -17,14 +17,12 @@ searchHistory.map(search => {
 
 const cardContainer = document.querySelector('.container')
 let searchItems;
-document.querySelectorAll('.search.items') ? searchItems = document.querySelectorAll('.search-items') : searchItems = "";
+document.querySelectorAll('.search-items') ? searchItems = document.querySelectorAll('.search-items') : searchItems = "";
 
 searchItems.forEach(elem => {
     const search = elem.querySelector('.search-name').innerText;
     elem.addEventListener('click', () => {
 
-        // let myArr = search.split(' ');
-        // let newSearch = myArr.join('+');
 
         if (search.value != "") {
             cardContainer.classList.remove('hide');
@@ -40,7 +38,7 @@ searchItems.forEach(elem => {
                         id: arrItems.id,
                         image: bookInfo.imageLinks.thumbnail,
                         title: bookInfo.title,
-                        author: bookInfo.authors[0],
+                        author: bookInfo.authors == undefined ? bookInfo.authors = ["NA"] : bookInfo.authors = bookInfo.authors[0],
                         pageCount: bookInfo.pageCount,
                         publisher: bookInfo.publisher
                     }
@@ -64,19 +62,19 @@ searchItems.forEach(elem => {
                     item.publisher == undefined ? item.publisher = 'NA' : item.publisher;
 
                     cardWrapper.innerHTML += `
-                <div class="card">
-                    <img class="image-top" src=${item.image} alt="${item.name}">
-                    <div class="card-body">
-                        <h5 class="card-title">${item.title}</h5>
-                        <p class="card-author">Author: ${item.author}</p>
-                        <p class="card-page-count">Page Count: ${item.pageCount}</p>
-                        <p class="card-publisher">Publisher: ${item.publisher}</p>
+                    <div class="card">
+                        <img class="image-top" src=${item.image} alt="${item.name}">
+                        <div class="card-body">
+                            <h5 class="card-title">${item.title}</h5>
+                            <p class="card-author">Author: ${item.author}</p>
+                            <p class="card-page-count">Page Count: ${item.pageCount}</p>
+                            <p class="card-publisher">Publisher: ${item.publisher}</p>
+                        </div>
+                        <div class="btn">
+                            <button class="buy-now">Buy Now</button>
+                        </div>
                     </div>
-                    <div class="btn">
-                        <button class="buy-now">Buy Now</button>
-                    </div>
-                </div>
-                `
+                    `
                 })
             }
             fetchingData();
